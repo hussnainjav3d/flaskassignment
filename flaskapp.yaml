@@ -1,0 +1,15 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: assignment2
+  labels:
+    app: face_recognition
+    type: develpment
+spec:
+  containers:
+  - name:  flaskapp
+    image: myflask:v2
+    imagePullPolicy: IfNotPresent    
+    ports:
+    - containerPort: 2020
+     

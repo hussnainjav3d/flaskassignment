@@ -1,0 +1,38 @@
+FROM ubuntu:16.04
+
+MAINTAINER Madhuri Koushik "madhuri@koushik.com"
+
+RUN apt-get update -y && \
+    apt-get install -y python3-pip python3-dev
+
+COPY ./requirements.txt /requirements.txt
+
+WORKDIR /
+
+RUN pip3 install -r requirements.txt
+
+COPY . /
+
+ENTRYPOINT [ "python3" ]
+
+CMD [ "app/app.py" ]
+
+
+
+
+FROM alpine:latest
+
+WORKDIR /app
+COPY . /app
+
+RUN apk add --no-cache python3-dev \
+    && pip install --upgrade pip \
+    && pip install -r requirements.txt
+
+
+
+EXPOSE 2020
+
+ENTRYPOINT [ "python3"]
+
+CMD [ "/app/app.py" ]

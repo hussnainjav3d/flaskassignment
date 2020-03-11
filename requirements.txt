@@ -1,0 +1,5 @@
+Flask
+cmake
+dlib
+face_recognition
+
